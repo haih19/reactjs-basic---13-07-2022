@@ -25,15 +25,16 @@ class MyComponent extends React.Component {
 
 
     render() {
+        console.log(this.state);
         return (
             <>
                 <div className="information">
                     <label htmlFor="">Enter your name:</label>
-                    <input onChange={this.handleOnChangeName} type="text" />
+                    <input onChange={this.handleOnChangeName} type="text" value={this.state.name} />
                 </div>
                 <div className="information">
                     <label htmlFor="">Enter your age:</label>
-                    <input onChange={this.handleOnChangeAge} type="text" />
+                    <input onChange={this.handleOnChangeAge} type="text" value={this.state.age} />
                 </div>
                 <div className="display">
                     <div>My name's {this.state.name}</div>

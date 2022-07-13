@@ -1,5 +1,7 @@
 import logo from './logo.svg';
 import './App.scss';
+import MyComponent from './example/myComponent';
+//1. back 1 lan
 
 function App() {
   return (
@@ -9,7 +11,7 @@ function App() {
         <p>
           Hello World!
         </p>
-
+        <MyComponent></MyComponent>
       </header>
     </div>
   );

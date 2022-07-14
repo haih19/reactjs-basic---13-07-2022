@@ -3,27 +3,25 @@ import React from "react";
 class ChildComponent extends React.Component {
 
     state = {
-        showJob: false
+        showJobs: false
     }
 
     handleShowHide = () => {
         this.setState({
-            showJob: !this.state.showJob
+            showJobs: !this.state.showJobs
         })
     }
-
     render() {
         let { jobList } = this.props;
-        let { showJob } = this.state;
+        let { showJobs } = this.state
         return (
             <>
-                {showJob === false ?
-                    <>
-                        <div>
-                            <button onClick={this.handleShowHide}>Show</button>
-                        </div>
-                    </>
-                    :
+                {showJobs === false ? //neu showjob = false thi
+                    <div>
+                        <button onClick={this.handleShowHide}>Show</button>
+                    </div>
+
+                    ://showjobs === true then do the task
                     <>
                         <div>
                             {
@@ -35,12 +33,12 @@ class ChildComponent extends React.Component {
                                 })
                             }
                         </div>
-
                         <div>
                             <button onClick={this.handleShowHide}>Hide</button>
                         </div>
                     </>
                 }
+
             </>
         )
     }

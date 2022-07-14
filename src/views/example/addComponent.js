@@ -5,13 +5,13 @@ class AddComponent extends React.Component {
 
 
     state = {
-        titleJob: '',
+        title: '',
         salary: ''
     }
 
     handleOnChangeTitleJob = (event) => {
         this.setState({
-            titleJob: event.target.value
+            title: event.target.value
         })
     }
 
@@ -23,7 +23,23 @@ class AddComponent extends React.Component {
 
     handleSubmit = (event) => {
         event.preventDefault()
-        console.log(">>>Check state: ", this.state);
+
+        if (!this.state.title || !this.state.salary) {
+            alert('Missing required params')
+            return;
+        }
+
+        this.props.addNewJob({
+            id: Math.floor(Math.random() * (100 - 10) + 10),
+            title: this.state.title,
+            salary: this.state.salary
+        })
+
+        this.setState({
+            title: '',
+            salary: ''
+        })
+
     }
 
     render() {
@@ -32,7 +48,7 @@ class AddComponent extends React.Component {
                 <form action="/action_page.php" >
                     <label htmlFor="">Job title:</label><br />
                     <input onChange={this.handleOnChangeTitleJob}
-                        type="text" id="fname" value={this.state.titleJob} />
+                        type="text" id="fname" value={this.state.title} />
                     <br />
                     <label htmlFor="">Salary:</label><br />
                     <input onChange={this.handleOnChangeSalary}

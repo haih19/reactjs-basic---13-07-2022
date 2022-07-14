@@ -4,7 +4,8 @@ class ChildComponent extends React.Component {
 
     state = {
         firstName: '',
-        lastName: ''
+        lastName: '',
+        arrJob: []
     }
 
     handleOnChangeFName = (event) => {
@@ -25,12 +26,20 @@ class ChildComponent extends React.Component {
     }
 
     render() {
-        let { name, age } = this.props;
+        let { name, age, address, jobList } = this.props;
+        console.log(jobList);
 
         return (
             <>
-                <div>Child Component {name}</div>
-                <div>Age: {age}</div>
+                <div>
+                    {
+                        jobList.map((element) => {
+                            return (<div key={element.id}>
+                                Job: {element.title} - Salary: {element.salary}$
+                            </div>)
+                        })
+                    }
+                </div>
             </>
         )
     }

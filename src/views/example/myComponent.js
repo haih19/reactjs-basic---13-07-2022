@@ -5,7 +5,24 @@ class MyComponent extends React.Component {
 
     state = {
         firstName: '',
-        lastName: ''
+        lastName: '',
+        arrJob: [
+            {
+                id: 1,
+                title: 'Tester',
+                salary: 500
+            },
+            {
+                id: 2,
+                title: 'Developer',
+                salary: 750
+            },
+            {
+                id: 3,
+                title: 'QA',
+                salary: 700
+            }
+        ]
     }
 
     handleOnChangeFName = (event) => {
@@ -40,9 +57,10 @@ class MyComponent extends React.Component {
                         type="submit" value="Submit" />
                 </form>
                 <ChildComponent
-                    name={'child one'}
-                    age={'26'}
-
+                    name={this.state.firstName}
+                    age={'25'}
+                    address={'Hanoi'}
+                    jobList={this.state.arrJob}
                 >
 
                 </ChildComponent>

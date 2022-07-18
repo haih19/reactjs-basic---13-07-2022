@@ -1,61 +1,67 @@
 import React from "react";
 
-
 class AddComponent extends React.Component {
-
 
     state = {
         title: '',
         salary: ''
     }
 
-    handleOnChangeTitleJob = (event) => {
+    handleChangeFName = (event) => {
         this.setState({
             title: event.target.value
         })
     }
 
-    handleOnChangeSalary = (event) => {
+    handleChangeLName = (event) => {
         this.setState({
             salary: event.target.value
         })
     }
 
     handleSubmit = (event) => {
-        event.preventDefault()
+        event.preventDefault();
 
-        if (!this.state.title || !this.state.salary) {
+        let { title, salary } = this.state
+
+        if (!title || !salary) {
             alert('Missing required params')
             return;
         }
 
+        console.log(this.state);
         this.props.addNewJob({
-            id: Math.floor(Math.random() * (100 - 10) + 10),
+            id: Math.floor(Math.random() * 10),
             title: this.state.title,
-            salary: this.state.salary
+            salary: parseInt(this.state.salary)
         })
 
         this.setState({
             title: '',
             salary: ''
         })
-
     }
 
     render() {
         return (
             <>
-                <form action="/action_page.php" >
-                    <label htmlFor="">Job title:</label><br />
-                    <input onChange={this.handleOnChangeTitleJob}
-                        type="text" id="fname" value={this.state.title} />
-                    <br />
-                    <label htmlFor="">Salary:</label><br />
-                    <input onChange={this.handleOnChangeSalary}
-                        type="text" id="lname" value={this.state.salary} /> <br /><br />
-                    <input onClick={this.handleSubmit}
-                        type="submit" value="Submit" />
+                <form>
+                    <label htmlFor="fname">Job's title:</label><br />
+                    <input
+                        type="text" onChange={this.handleChangeFName} value={this.state.title} /><br /><br />
+
+
+                    <label htmlFor="lname">Salary:</label><br />
+                    <input
+                        type="text" onChange={this.handleChangeLName} value={this.state.salary} /> <br /><br />
+
+                    <button type="submit" onClick={this.handleSubmit}>Submit</button>
                 </form>
+
+                {/* <div>
+                    <div>My name is {this.state.title}</div>
+                    <div>Last name is {this.state.salary}</div>
+                </div> */}
             </>
         )
     }

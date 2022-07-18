@@ -3,73 +3,56 @@ import React from "react";
 class ChildComponent extends React.Component {
 
     state = {
-        showJob: false
+        show: false
     }
 
     handleShowHide = () => {
         this.setState({
-            showJob: !this.state.showJob
+            show: !this.state.show
         })
     }
 
-    handleDeleteJob = (event) => {
-        this.props.deleteJob(event)
+    handleDelete = (event) => {
+        this.props.deleteAJob(event)
     }
 
     render() {
-        let { jobList } = this.props;
-        let { showJob } = this.state;
+        let { arrJob } = this.props
+        let { show } = this.state
+        const marginLeft = {
+            marginLeft: "12px"
+        }
         return (
+
             <>
-                {showJob === false ?
-                    <>
-                        <div>
-                            <button onClick={this.handleShowHide}>Show</button>
-                        </div>
-                    </>
-                    :
-                    <>
-                        <div>
-                            {
-                                jobList.map((element) => {
-                                    return (
-                                        <div key={element.id}>
-                                            Job: {element.title} - Salary: {element.salary}$
+                <div>
+                    {!show ?
+                        <button onClick={this.handleShowHide}>show</button>
+                        :
+                        <>
+                            <div>
+                                {
+                                    arrJob.map((element) => {
+                                        return (
+                                            <div key={element.id}>
+                                                {element.title} - {element.salary}$
+                                                <span
+                                                    onClick={() => this.handleDelete(element)}
+                                                    style={marginLeft}>X</span>
+                                            </div>
+                                        )
+                                    })
+                                }
+                            </div>
+                            <button onClick={this.handleShowHide}>hide</button>
+                        </>
+                    }
+                </div>
 
-                                            <></> <span
-                                                onClick={() => this.handleDeleteJob(element)}>x</span>
-                                        </div>
-                                    )
-                                })
-                            }
-                        </div>
-
-                        <div>
-                            <button onClick={this.handleShowHide}>Hide</button>
-                        </div>
-                    </>
-                }
             </>
         )
     }
 }
 
-// const ChildComponent = (props) => {
-//     let { jobList } = props;
 
-//     return (
-//         <>
-//             <div>
-//                 {
-//                     jobList.map((element) => {
-//                         return (<div key={element.id}>
-//                             Job: {element.title} - Salary: {element.salary}$
-//                         </div>)
-//                     })
-//                 }
-//             </div>
-//         </>
-//     )
-// }
-
-export default ChildComponent
+export default ChildComponent;
